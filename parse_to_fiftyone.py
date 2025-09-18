@@ -187,16 +187,7 @@ def parse_to_fiftyone():
     dataset.add_samples(samples)
     dataset.compute_metadata()        # Compute image dimensions, etc.
     dataset.add_dynamic_sample_fields()  # Enable dynamic field computation
-    # Set the color pool for better visibility
-    # Use distinct colors for each class
-    dataset.app_config.color_pool = [
-        "#FF6D00",  # Orange for Matrix
-        "#00C853",  # Green for Austenite  
-        "#2962FF",  # Blue for Martensite/Austenite
-        "#FFD600",  # Yellow for Precipitate
-        "#D50000",  # Red for Defect
-    ]
-    dataset.save()
+    dataset.app_config.color_scheme = fo.ColorScheme(color_by="value")
     
     print(f"Created FiftyOne dataset with {len(samples)} samples")
     return dataset
